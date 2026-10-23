@@ -1,4 +1,4 @@
-# Time@Work – Version 1.0.0
+# Time@Work – Version 1.1.0
 
 Eine iPhone-optimierte, offlinefähige Progressive Web App für Arbeitszeiten, Arbeitsorte, Überstunden, Urlaub und Abwesenheiten. Keine Anmeldung, keine Serverdatenbank.
 
@@ -14,7 +14,7 @@ Eine iPhone-optimierte, offlinefähige Progressive Web App für Arbeitszeiten, A
 
 - **Einstellungen:** Erfassungsbeginn, Wochenstunden, Standardpause, Anfangssaldo, Standard-Arbeitsorte und vertraglichen Jahresurlaub (Standard 30 Tage) einstellen.
 - **Urlaubskonto:** Tatsächlich verfügbaren Anspruch separat setzen (z. B. 8 Tage bei Beginn im Oktober). Bei negativem Konto wird eine Warnung gezeigt, Buchungen bleiben möglich.
-- **Kalender:** Tag antippen für Bearbeitung; über „Mehrere Tage auswählen“ beliebige Abwesenheitstage gemeinsam buchen.
+- **Kalender:** Tag antippen und Arbeitsort mit einem Tippen ändern, ohne Sollzeit oder Zeitsaldo zu verändern. Für mehrere Tage „Von“/„Bis“ auswählen, „Zeitraum auswählen“ drücken und „Arbeitsort ändern“ wählen. Abwesenheiten können weiterhin gesammelt gebucht werden.
 - **Daten:** In Einstellungen regelmäßig **Backup (JSON)** exportieren und die Datei manuell in iCloud Drive ablegen. Wiederherstellung führt Einträge zusammen, bei Überschneidungen gewinnt das Backup.
 
 ## Berechnungsregeln
@@ -28,6 +28,15 @@ Eine iPhone-optimierte, offlinefähige Progressive Web App für Arbeitszeiten, A
 - Für vergangene normale Arbeitstage ohne Eintrag wird die Sollzeit automatisch ergänzt; bei vergessenem Ausstempeln wird ebenfalls die Sollzeit angesetzt. Diese Tage werden im Kalender markiert. Der Hinweis beim nächsten Öffnen ist einmalig.
 - Zukünftige Urlaubsbuchungen reduzieren das Urlaubskonto sofort, erzeugen aber erst am jeweiligen Tag eine Zeitgutschrift.
 
+## Neu in 1.1.0
+
+- Mobile Layout-Breite korrigiert, iPhone-Zeitfelder innerhalb des Containers.
+- Tages-Schnelländerung des Arbeitsorts; automatisch ergänzte Sollzeiten bleiben erhalten.
+- Zeitraum-Auswahl für Massenänderung des Arbeitsorts (Wochenenden, Feiertage und Abwesenheiten werden übersprungen).
+- Zeitvorschlag aus Tages-Soll + Pause statt fest 09:00–17:00.
+- Pausenkurzwahl 60 / 30 / frei bei Tageskorrektur und Ausstempeln.
+- Bestehende Daten bleiben beim Update erhalten; localStorage-Schlüssel unverändert.
+
 ## Hinweise und Grenzen
 
 - Daten liegen im **localStorage** der konkreten Browser-Installation. Safari und die zum Home-Bildschirm hinzugefügte App können getrennte Datenspeicher haben. Die App synchronisiert Daten nicht automatisch zwischen Geräten oder Installationen.
@@ -39,3 +48,10 @@ Eine iPhone-optimierte, offlinefähige Progressive Web App für Arbeitszeiten, A
 ## Tests
 
 Mit Node.js im Projektordner: `node test.js`. 15 automatisierte Modelltests decken Feiertage, Zeitkonten, 150%-Regeln, Abwesenheiten, Elternzeit, Urlaubsansprüche, Datumsregeln und Backup-Merge ab.
+
+## Version 1.2
+- Die Einstempelzeit lässt sich während eines laufenden Arbeitstags unmittelbar auf der Startseite korrigieren.
+- Einträge werden bei jedem Speichern in localStorage zurückgelesen; Fehler werden sichtbar angezeigt.
+- Beim Zurückkehren in die App wird die Zeitanzeige aktualisiert.
+- Der Timer muss nicht im Hintergrund laufen: Die Anzeige berechnet sich aus der gespeicherten Startzeit.
+- Achtung: iOS kann Daten einer installierten Web-App löschen, insbesondere bei Website-Datenlöschung, Privatmodus, Speicherproblemen oder Änderungen der App-URL. Ein JSON-Backup bleibt wichtig.
