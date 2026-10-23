@@ -4,3 +4,13 @@
 html{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;touch-action:pan-y}body,#app,main{width:100%;max-width:100%;overflow-x:clip}main,.panel,.field,.btnrow,.grid2,.grid3{min-width:0}.top{padding-top:max(env(safe-area-inset-top),8px);height:auto;min-height:72px}.field input[type=time],.field input[type=date]{display:block;max-width:100%;min-width:0;min-height:46px;-webkit-appearance:none;appearance:none}.field input,.field select{font-size:16px;box-sizing:border-box}.panel{max-width:100%;overflow:hidden}.heading{overflow-wrap:anywhere;font-size:clamp(23px,6.2vw,29px)}.btnrow .btn{min-width:0;overflow-wrap:anywhere}.pause-buttons{display:flex;gap:8px;flex-wrap:wrap}.pause-buttons .btn{flex:1;padding:11px 8px;min-width:75px}.btn.active,.pause-buttons .btn.active{background:#504633;border-color:var(--accent);color:var(--accent)}.quick-panel{border-color:#796b4f}.calendar-controls strong{text-align:center;min-width:0;overflow-wrap:anywhere}.cal-grid{min-width:0}.day{min-width:0}.field input::-webkit-date-and-time-value{min-width:0;text-align:left}.field input::-webkit-datetime-edit{min-width:0}.field input::-webkit-calendar-picker-indicator{margin-left:0}
 
 .start-edit{display:flex;align-items:end;gap:10px;flex-wrap:wrap;margin:12px 0 18px}.start-edit .field{flex:1 1 155px;min-width:0}.start-edit input{max-width:100%;box-sizing:border-box}.start-edit button{flex:1 1 120px}
+
+/* v1.3 — muted calendar day categories */
+.cal-grid .day.day-work{background:#263b30;border-color:#3b604b}
+.cal-grid .day.day-sick{background:#452d30;border-color:#704347}
+.cal-grid .day.day-leave{background:#273b4b;border-color:#3b5970}
+.cal-grid .day.day-work .detail{color:#b7d8c0}
+.cal-grid .day.day-sick .detail{color:#e7b4b5}
+.cal-grid .day.day-leave .detail{color:#b6d3e9}
+.cal-grid .day.selected{outline:2px solid var(--accent);outline-offset:-2px;border-color:var(--accent)}
+.cal-grid .day.today:not(.selected){box-shadow:inset 0 0 0 1px var(--accent)}

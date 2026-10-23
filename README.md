@@ -55,3 +55,6 @@ Mit Node.js im Projektordner: `node test.js`. 15 automatisierte Modelltests deck
 - Beim Zurückkehren in die App wird die Zeitanzeige aktualisiert.
 - Der Timer muss nicht im Hintergrund laufen: Die Anzeige berechnet sich aus der gespeicherten Startzeit.
 - Achtung: iOS kann Daten einer installierten Web-App löschen, insbesondere bei Website-Datenlöschung, Privatmodus, Speicherproblemen oder Änderungen der App-URL. Ein JSON-Backup bleibt wichtig.
+
+## Version 1.3
+Kalendertage farblich hervorgehoben: Arbeitszeit (gedecktes Grün), Krankheit (Rot), Urlaubsarten und Elternzeit (Blau). Automatische Tage behalten ihre Punktmarkierung.
