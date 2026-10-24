@@ -65,3 +65,11 @@ Kalendertage farblich hervorgehoben: Arbeitszeit (gedecktes Grün), Krankheit (R
 - Wochenend-/Feiertagsarbeit wird standardmäßig zu 100 % angerechnet; 150 %, 200 % oder freie Eingabe beim Einstempeln und in der Tageskorrektur.
 - Ausstempeln, Massenbuchungen und Tageskorrektur als Dialoge; Kalenderaktionen und Einstellungen einklappbar.
 - Backup vor dem Update empfohlen. Speicherschlüssel bleibt unverändert.
+
+
+### Version 1.4.1
+- Pausenänderungen in der Tageskorrektur verändern nicht mehr das Arbeitsende. Die Nettoarbeitszeit wird aus festen Beginn-/Endzeiten abzüglich Pause berechnet.
+
+
+## Version 1.4.3
+Statistikdiagramm zeigt nun Tagessalden statt kumulierter Salden: grün positiv, rot negativ, gelb exakt 0. Jeder Kalendertag hat einen eigenen Balken; lange Zeiträume sind horizontal scrollbar. Die Gesamtsaldo-Kennzahl bleibt erhalten.
