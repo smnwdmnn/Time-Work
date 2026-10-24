@@ -24,6 +24,7 @@ function parentMonths(data,year){let months=[];for(let m=1;m<=12;m++){let last=n
 function vacationQuota(data,year){let cfg=data.vacationYears[year]||{};let annual=Number(data.annualAllowance)||0;let defaultBase=annual;if(data.startDate.slice(0,4)===String(year)){let month=+data.startDate.slice(5,7);defaultBase=Math.ceil((13-month)*annual/12);}let base=cfg.base===undefined?defaultBase:Number(cfg.base);let reduction=parentMonths(data,year).length*annual/12;return {base,carry:Number(cfg.carry)||0,adjustment:Number(cfg.adjustment)||0,reduction};}
 function vacationUsed(data,year){return Object.entries(data.entries).filter(([d,e])=>d.slice(0,4)===String(year)&&['vacation','special','unpaid'].includes(e.type)&&weekday(d)<5&&!holiday(d)).length;}
 function vacationBalance(data,year){let q=vacationQuota(data,year);return {...q,used:vacationUsed(data,year),remaining:q.base+q.carry+q.adjustment-q.reduction-vacationUsed(data,year)};}
+function creditFactor(raw){const n=Number(raw?.factor);return Number.isFinite(n)&&n>=0&&n<=500?n/100:1;}
 function day(s,data,today=dateKey(new Date()),now=new Date()){
  const wd=weekday(s),hol=holiday(s),target=dailyTarget(s,data),raw=entry(s,data,today);let type=raw?.type||null,location=raw?.location||standardLoc(s,data);let actual=0,credited=0,balance=0,net=0,auto=false,estimated=false,breakM=raw?.breakM??data.defaultBreak;
  if(type==='work'){if(raw.end){net=Math.max(0,duration(raw.start,raw.end)-breakM);actual=net;}else if(s<today){net=target;actual=net;auto=true;estimated=true;}else if(s===today){let current=now.getHours()*60+now.getMinutes();let elapsed=current-minutes(raw.start);if(elapsed<0)elapsed+=1440;net=Math.max(0,elapsed-(data.defaultBreak||0));estimated=true;}}
@@ -34,15 +35,15 @@ function day(s,data,today=dateKey(new Date()),now=new Date()){
  // On nonworking holidays the daily target is satisfied, and worked holiday hours add at 1.5x.
  if(hol&&type==='work')credited=target;
  let applicableTarget=(type==='parent'||type==='unpaid')?0:target;
- let workCredit=actual*((wd>4||hol)?1.5:1);
+ let workCredit=actual*((wd>4||hol)?creditFactor(raw):1);
  balance=workCredit+credited-(s<=today?applicableTarget:0);
  if(s===today&&!raw)balance=0;
  // Live running work is not included in finalized balances until punched out.
  if(type==='work'&&!raw.end&&s===today){balance=0;actual=0;workCredit=0;}
- return {date:s,weekday:wd,holiday:hol,target:applicableTarget,raw,type,location,actual,net,credited,workCredit,balance,auto,estimated,breakM,finished:!!raw?.end};
+ return {date:s,weekday:wd,holiday:hol,target:applicableTarget,raw,type,location,actual,net,credited,workCredit,balance,auto,estimated,breakM,finished:!!raw?.end,factor:(wd>4||hol)?Math.round(creditFactor(raw)*100):100};
 }
 function period(data,from,to,today=dateKey(new Date())){if(!from||!to||from>to)return [];let start=from<data.startDate?data.startDate:from;return start>to?[]:daysBetween(start,to).map(d=>day(d,data,today));}
 function totals(rows,data){let worked=0,credited=0,balance=0,office=0,home=0,travel=0,auto=0;let absence={vacation:0,special:0,unpaid:0,sick:0,parent:0,holiday:0};for(let d of rows){worked+=d.actual;credited+=d.credited;balance+=d.balance;if(d.auto)auto++;if(d.type==='work'||d.type==='auto'){if(d.actual>0){if(d.location==='office')office++;else if(d.location==='home')home++;else if(d.location==='travel')travel++;}}if(absence[d.type]!==undefined)absence[d.type]++;else if(d.holiday)absence.holiday++;}return {worked,credited,balance,office,home,travel,auto,absence,finalBalance:(Number(data.initialBalance)||0)+balance};}
 function merge(current,backup){if(!backup||backup.version!==1||typeof backup.entries!=='object'||!backup.weeklyRules||!backup.locationRules)throw Error('Ungültige oder nicht unterstützte Sicherungsdatei.');return {...current,...backup,entries:{...current.entries,...backup.entries},vacationYears:{...current.vacationYears,...backup.vacationYears},notified:{...current.notified,...backup.notified}};}
-return {TYPES,LOC,DEFAULT_WEEK,pad,dateKey,parseDate,addDays,daysBetween,weekday,easter,holiday,minutes,duration,fmt,signed,defaults,rule,dailyTarget,standardLoc,entry,parentMonths,vacationQuota,vacationBalance,day,period,totals,merge};
+return {creditFactor,TYPES,LOC,DEFAULT_WEEK,pad,dateKey,parseDate,addDays,daysBetween,weekday,easter,holiday,minutes,duration,fmt,signed,defaults,rule,dailyTarget,standardLoc,entry,parentMonths,vacationQuota,vacationBalance,day,period,totals,merge};
 });

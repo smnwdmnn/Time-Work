@@ -58,3 +58,10 @@ Mit Node.js im Projektordner: `node test.js`. 15 automatisierte Modelltests deck
 
 ## Version 1.3
 Kalendertage farblich hervorgehoben: Arbeitszeit (gedecktes Grün), Krankheit (Rot), Urlaubsarten und Elternzeit (Blau). Automatische Tage behalten ihre Punktmarkierung.
+
+## Version 1.4.0 (24.10.2026)
+- Monatskalender zeigt Arbeitsort statt „Auto“; goldener Punkt bleibt erhalten.
+- Wochenansicht entfernt.
+- Wochenend-/Feiertagsarbeit wird standardmäßig zu 100 % angerechnet; 150 %, 200 % oder freie Eingabe beim Einstempeln und in der Tageskorrektur.
+- Ausstempeln, Massenbuchungen und Tageskorrektur als Dialoge; Kalenderaktionen und Einstellungen einklappbar.
+- Backup vor dem Update empfohlen. Speicherschlüssel bleibt unverändert.
