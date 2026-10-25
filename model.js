@@ -1,6 +1,6 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;root.TimeModel=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
-const TYPES={vacation:'Urlaub',special:'Sonderurlaub',unpaid:'Unbezahlter Urlaub',sick:'Krankheit',parent:'Elternzeit'};
+const TYPES={vacation:'Urlaub',special:'Sonderurlaub',unpaid:'Unbezahlter Urlaub',sick:'Krankheit',parent:'Elternzeit',overtime:'Überstundenabbau'};
 const DEFAULT_WEEK=['office','home','office','home','home'];
 const LOC={office:'Büro',home:'Home Office',travel:'Dienstreise'};
 const pad=n=>String(n).padStart(2,'0');
@@ -30,7 +30,7 @@ function day(s,data,today=dateKey(new Date()),now=new Date()){
  if(type==='work'){if(raw.end){net=Math.max(0,duration(raw.start,raw.end)-breakM);actual=net;}else if(s<today){net=target;actual=net;auto=true;estimated=true;}else if(s===today){let current=now.getHours()*60+now.getMinutes();let elapsed=current-minutes(raw.start);if(elapsed<0)elapsed+=1440;net=Math.max(0,elapsed-(data.defaultBreak||0));estimated=true;}}
  else if(type==='auto'){net=Number(raw.net)||target;actual=net;auto=true;}
  else if(type==='vacation'||type==='special'||type==='sick'){credited=s<=today?target:0;}
- else if(type==='unpaid'||type==='parent'){credited=0;}
+ else if(type==='unpaid'||type==='parent'||type==='overtime'){credited=0;}
  else if(hol){credited=s<=today?target:0;}
  // On nonworking holidays the daily target is satisfied, and worked holiday hours add at 1.5x.
  if(hol&&type==='work')credited=target;

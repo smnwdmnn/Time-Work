@@ -73,3 +73,7 @@ Kalendertage farblich hervorgehoben: Arbeitszeit (gedecktes Grün), Krankheit (R
 
 ## Version 1.4.3
 Statistikdiagramm zeigt nun Tagessalden statt kumulierter Salden: grün positiv, rot negativ, gelb exakt 0. Jeder Kalendertag hat einen eigenen Balken; lange Zeiträume sind horizontal scrollbar. Die Gesamtsaldo-Kennzahl bleibt erhalten.
+
+
+## Version 1.4.4 – Überstundenabbau
+Im Kalender als Abwesenheit auswählbar, in Blau wie Urlaub dargestellt. Reguläres Tagessoll wird als negativer Tagessaldo vom Überstundenkonto abgezogen, ohne das Urlaubskonto zu belasten. Für Wochenenden mit Tagessoll 0 erfolgt kein Abzug.
