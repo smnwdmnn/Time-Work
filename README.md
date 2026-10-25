@@ -85,3 +85,6 @@ Im Kalender als Abwesenheit auswählbar, in Blau wie Urlaub dargestellt. Regulä
 - Tageskorrektur weiter über direktes Antippen ohne Auswahlmodus.
 - Redundante Gesamtsaldo-Kachel auf Startseite entfernt.
 - Bestehende Daten und Speicherformat bleiben unverändert.
+
+## Version 1.5.1 – Arbeitsorttage für Steuerübersicht
+Die Statistik zählt Büro-, Home-Office- und Dienstreisetage nur an regulären Arbeitstagen (Mo–Fr, kein NRW-Feiertag) sowie bei Wochenend- oder Feiertagsarbeit mit genau 150 % Anrechnungsfaktor. Freiwillige Wochenend-/Feiertagsarbeit mit 100 % bleibt in den tatsächlich geleisteten Stunden und im Zeitkonto enthalten, zählt aber nicht als Arbeitsorttag. Andere frei gewählte Faktoren gelten nicht automatisch als genehmigte Mehrarbeit. Diese Zählung ist eine Übersicht, keine automatische Prüfung steuerrechtlicher Anspruchsvoraussetzungen.
