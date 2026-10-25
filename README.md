@@ -77,3 +77,11 @@ Statistikdiagramm zeigt nun Tagessalden statt kumulierter Salden: grün positiv,
 
 ## Version 1.4.4 – Überstundenabbau
 Im Kalender als Abwesenheit auswählbar, in Blau wie Urlaub dargestellt. Reguläres Tagessoll wird als negativer Tagessaldo vom Überstundenkonto abgezogen, ohne das Urlaubskonto zu belasten. Für Wochenenden mit Tagessoll 0 erfolgt kein Abzug.
+
+## Version 1.5.0 – Kalender-Redesign
+- Monatskalender mit Piktogrammen statt abgeschnittener Arbeitsort- und Abwesenheitsbezeichnungen.
+- Büro = Gebäude, Home Office = Haus, Dienstreise = Auto, Krankheit = Krankenhaus, alle Urlaubsarten inklusive Elternzeit und Überstundenabbau = Palme.
+- Einzelauswahl durch Antippen; Zeitraum durch Start- und Enddatum im Kalender auswählen; Aktionen in kompakter Leiste.
+- Tageskorrektur weiter über direktes Antippen ohne Auswahlmodus.
+- Redundante Gesamtsaldo-Kachel auf Startseite entfernt.
+- Bestehende Daten und Speicherformat bleiben unverändert.

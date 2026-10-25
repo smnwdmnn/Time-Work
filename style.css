@@ -26,3 +26,24 @@ html{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;touch-action:pan
 .daily-chart-scroll{width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
 .daily-chart{width:max(100%,calc(var(--daily-count) * 13px));min-width:0;gap:3px}
 .daily-chart .balance-slot{flex:1 0 10px;min-width:10px}
+
+/* 1.5: compact icon-first calendar and selection toolbar */
+.ui-icon{display:inline-block;vertical-align:middle;flex:none}
+.loc-button{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;min-width:0;min-height:76px;padding:10px 5px;white-space:normal;overflow-wrap:normal;word-break:normal;hyphens:none;text-align:center}
+.loc-button span{font-size:clamp(11px,3vw,14px);line-height:1.2}
+#homeAction .btnrow,.quick-panel .btnrow,#locationForm .btnrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#homeAction .btnrow .btn,.quick-panel .btnrow .btn,#locationForm .btnrow .btn{width:100%}
+.calendar-toolbar{display:flex;justify-content:flex-end;gap:8px;margin:-5px 0 11px}
+.selection-hint{color:var(--accent);font-size:12px;margin:6px 0 12px}
+.cal-grid .day{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;min-height:72px}
+.cal-grid .day .day-icon{display:flex;align-items:center;justify-content:center;min-height:22px;color:#c1ddc9}
+.cal-grid .day.day-sick .day-icon{color:#e7b4b5}
+.cal-grid .day.day-leave .day-icon{color:#b6d3e9}
+.cal-grid .day .day-icon .ui-icon{width:21px;height:21px}
+.cal-grid .day .delta{margin:0;font-size:clamp(9px,2.6vw,12px);white-space:nowrap;letter-spacing:-.4px}
+.selection-actions{position:sticky;bottom:calc(env(safe-area-inset-bottom) + 8px);z-index:8;background:#222620;border:1px solid #5a5b4c;border-radius:17px;padding:11px;margin-top:14px;box-shadow:0 8px 32px #0009}
+.selection-count{font-size:12px;color:var(--accent);margin-bottom:8px}
+.selection-buttons{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+.selection-buttons .btn{display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;padding:10px 4px;font-size:11px;line-height:1.15;min-width:0;overflow-wrap:normal;word-break:normal}
+.vacation-summary{margin-top:12px}
+@media(max-width:390px){.cal-grid .day{min-height:67px}.cal-grid .day .day-icon .ui-icon{width:19px;height:19px}.selection-buttons .btn{font-size:10px}}
