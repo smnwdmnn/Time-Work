@@ -101,3 +101,6 @@ Die Statistik zählt Büro-, Home-Office- und Dienstreisetage nur an regulären 
 - Hinweis bei neuer Version mit „Jetzt aktualisieren“ und „Später“. Keine automatische Neuladung während der Eingabe.
 - Lokaler Datenspeicher und Backup-Format unverändert.
 - Bei Migration von 1.5.2 oder älter kann ein vollständiges Schließen und erneutes Öffnen nötig sein, bis die neue Version sichtbar wird.
+
+## Version 1.5.4
+Monatliche Backup-Erinnerung ab erstem regulären NRW-Arbeitstag (Mo–Fr ohne NRW-Feiertag). Nutzer tippt auf „Teilen öffnen“ (iOS-Sicherheitsanforderung), speichert in Dateien/iCloud Drive und bestätigt anschließend ausdrücklich. Erinnern am Folgetag möglich. Keine automatische Löschung von Daten.
