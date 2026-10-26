@@ -88,3 +88,16 @@ Im Kalender als Abwesenheit auswählbar, in Blau wie Urlaub dargestellt. Regulä
 
 ## Version 1.5.1 – Arbeitsorttage für Steuerübersicht
 Die Statistik zählt Büro-, Home-Office- und Dienstreisetage nur an regulären Arbeitstagen (Mo–Fr, kein NRW-Feiertag) sowie bei Wochenend- oder Feiertagsarbeit mit genau 150 % Anrechnungsfaktor. Freiwillige Wochenend-/Feiertagsarbeit mit 100 % bleibt in den tatsächlich geleisteten Stunden und im Zeitkonto enthalten, zählt aber nicht als Arbeitsorttag. Andere frei gewählte Faktoren gelten nicht automatisch als genehmigte Mehrarbeit. Diese Zählung ist eine Übersicht, keine automatische Prüfung steuerrechtlicher Anspruchsvoraussetzungen.
+
+## Version 1.5.2
+- Beim Einstempeln geplante Pause (60/30/individuell, auch 0) auswählen.
+- Während der laufenden Erfassung geplante Pause ändern und Endzeit neu berechnen.
+- Tatsächliche Pause erst beim Ausstempeln erfassen.
+
+## Version 1.5.3 – Update-Verhalten
+- Beinhaltet die Pausenplanung von 1.5.2 (vorausgefüllte geplante Pause beim Ausstempeln).
+- Service Worker: Network-first für HTML, CSS und JavaScript, Cache als Offline-Fallback.
+- Service-Worker-Update bei App-Start, Rückkehr in den Vordergrund und manuell unter Einstellungen.
+- Hinweis bei neuer Version mit „Jetzt aktualisieren“ und „Später“. Keine automatische Neuladung während der Eingabe.
+- Lokaler Datenspeicher und Backup-Format unverändert.
+- Bei Migration von 1.5.2 oder älter kann ein vollständiges Schließen und erneutes Öffnen nötig sein, bis die neue Version sichtbar wird.

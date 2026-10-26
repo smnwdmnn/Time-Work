@@ -47,3 +47,7 @@ html{width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;touch-action:pan
 .selection-buttons .btn{display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;padding:10px 4px;font-size:11px;line-height:1.15;min-width:0;overflow-wrap:normal;word-break:normal}
 .vacation-summary{margin-top:12px}
 @media(max-width:390px){.cal-grid .day{min-height:67px}.cal-grid .day .day-icon .ui-icon{width:19px;height:19px}.selection-buttons .btn{font-size:10px}}
+
+/* Version 1.5.3: non-destructive update prompt */
+.update-notice{position:fixed;z-index:120;left:12px;right:12px;top:calc(env(safe-area-inset-top) + 10px);display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#2a302b;color:#f6f0dd;border:1px solid #a99a67;border-radius:14px;padding:12px;box-shadow:0 12px 35px #000a;font-size:13px}
+.update-notice span{flex:1 1 100%;font-weight:600}.update-notice button{flex:1 1 0;min-width:0}
