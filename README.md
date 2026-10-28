@@ -104,3 +104,6 @@ Die Statistik zählt Büro-, Home-Office- und Dienstreisetage nur an regulären 
 
 ## Version 1.5.4
 Monatliche Backup-Erinnerung ab erstem regulären NRW-Arbeitstag (Mo–Fr ohne NRW-Feiertag). Nutzer tippt auf „Teilen öffnen“ (iOS-Sicherheitsanforderung), speichert in Dateien/iCloud Drive und bestätigt anschließend ausdrücklich. Erinnern am Folgetag möglich. Keine automatische Löschung von Daten.
+
+## Version 1.5.5
+Neue Abwesenheitsart 'Kind krank' mit eigenem Statistik-Zähler und Krankenhaus-Icon/roter Kalenderfarbe. Berechnung wie eigene Krankheit (Sollzeitgutschrift); dies ist eine konfigurationsunabhängige Annahme und muss mit der Arbeitgeberregelung übereinstimmen. Backupformat bleibt Version 1.

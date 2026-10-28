@@ -1,5 +1,5 @@
 /* Time@Work 1.5.3 — update-safe, offline-capable, never touches localStorage */
-const CACHE='timeatwork-v1-5-4-20261026';
+const CACHE='timeatwork-v1-5-6-20261028';
 const ASSETS=['./','./index.html','./style.css','./app.js','./model.js','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png'];
 const APP_FILES=new Set(['','index.html','style.css','app.js','model.js','manifest.webmanifest']);
 self.addEventListener('install',event=>{

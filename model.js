@@ -1,6 +1,6 @@
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;root.TimeModel=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
-const TYPES={vacation:'Urlaub',special:'Sonderurlaub',unpaid:'Unbezahlter Urlaub',sick:'Krankheit',parent:'Elternzeit',overtime:'Überstundenabbau'};
+const TYPES={vacation:'Urlaub',special:'Sonderurlaub',unpaid:'Unbezahlter Urlaub',sick:'Krankheit',childSick:'Kind krank',parent:'Elternzeit',overtime:'Überstundenabbau'};
 const DEFAULT_WEEK=['office','home','office','home','home'];
 const LOC={office:'Büro',home:'Home Office',travel:'Dienstreise'};
 const pad=n=>String(n).padStart(2,'0');
@@ -34,7 +34,7 @@ function day(s,data,today=dateKey(new Date()),now=new Date()){
  else if(hol){credited=s<=today?target:0;}
  // On nonworking holidays the daily target is satisfied, and worked holiday hours add at 1.5x.
  if(hol&&type==='work')credited=target;
- let applicableTarget=(type==='parent'||type==='unpaid')?0:target;
+ let applicableTarget=(type==='parent'||type==='unpaid'||type==='childSick')?0:target;
  let workCredit=actual*((wd>4||hol)?creditFactor(raw):1);
  balance=workCredit+credited-(s<=today?applicableTarget:0);
  if(s===today&&!raw)balance=0;
@@ -43,7 +43,7 @@ function day(s,data,today=dateKey(new Date()),now=new Date()){
  return {date:s,weekday:wd,holiday:hol,target:applicableTarget,raw,type,location,actual,net,credited,workCredit,balance,auto,estimated,breakM,finished:!!raw?.end,factor:(wd>4||hol)?Math.round(creditFactor(raw)*100):100};
 }
 function period(data,from,to,today=dateKey(new Date())){if(!from||!to||from>to)return [];let start=from<data.startDate?data.startDate:from;return start>to?[]:daysBetween(start,to).map(d=>day(d,data,today));}
-function totals(rows,data){let worked=0,credited=0,balance=0,office=0,home=0,travel=0,auto=0;let absence={vacation:0,special:0,unpaid:0,sick:0,parent:0,holiday:0};for(let d of rows){worked+=d.actual;credited+=d.credited;balance+=d.balance;if(d.auto)auto++;if((d.type==='work'||d.type==='auto')&&d.actual>0){const regular=d.weekday<5&&!d.holiday;const approvedExtra=(d.weekday>4||!!d.holiday)&&d.factor===150;if(regular||approvedExtra){if(d.location==='office')office++;else if(d.location==='home')home++;else if(d.location==='travel')travel++;}}if(absence[d.type]!==undefined)absence[d.type]++;else if(d.holiday)absence.holiday++;}return {worked,credited,balance,office,home,travel,auto,absence,finalBalance:(Number(data.initialBalance)||0)+balance};}
+function totals(rows,data){let worked=0,credited=0,balance=0,office=0,home=0,travel=0,auto=0;let absence={vacation:0,special:0,unpaid:0,sick:0,childSick:0,parent:0,holiday:0};for(let d of rows){worked+=d.actual;credited+=d.credited;balance+=d.balance;if(d.auto)auto++;if((d.type==='work'||d.type==='auto')&&d.actual>0){const regular=d.weekday<5&&!d.holiday;const approvedExtra=(d.weekday>4||!!d.holiday)&&d.factor===150;if(regular||approvedExtra){if(d.location==='office')office++;else if(d.location==='home')home++;else if(d.location==='travel')travel++;}}if(absence[d.type]!==undefined)absence[d.type]++;else if(d.holiday)absence.holiday++;}return {worked,credited,balance,office,home,travel,auto,absence,finalBalance:(Number(data.initialBalance)||0)+balance};}
 function merge(current,backup){if(!backup||backup.version!==1||typeof backup.entries!=='object'||!backup.weeklyRules||!backup.locationRules)throw Error('Ungültige oder nicht unterstützte Sicherungsdatei.');return {...current,...backup,entries:{...current.entries,...backup.entries},vacationYears:{...current.vacationYears,...backup.vacationYears},notified:{...current.notified,...backup.notified}};}
 return {creditFactor,TYPES,LOC,DEFAULT_WEEK,pad,dateKey,parseDate,addDays,daysBetween,weekday,easter,holiday,minutes,duration,fmt,signed,defaults,rule,dailyTarget,standardLoc,entry,parentMonths,vacationQuota,vacationBalance,day,period,totals,merge};
 });
